@@ -1,42 +1,53 @@
-
 w_back = 70;
 h_back = 45;
 w_controller = 20;
 thickness_bottom = 2;
-
-h_walls = 4;
 thickness_walls = 2;
-gap_backligh = 1.5;
+thickness_top = 2;
+h_walls = 4;
+gap_backlight = 1.5;
+width_frame_window = 3;
 
 kit_controller();
 //walls();
-
 //debug_controller();
 
-module debug_controller() {
-difference() {
-    kit_controller();
-    translate([-w_controller/2, 0, h_walls/2])
-    cube([w_controller, h_back+2*thickness_walls+gap_backligh   +1, 2*h_walls], center=true);
- }
+module frame_controller(){
+    difference(){
+        cube([w_controller, h_back, thickness_top], center=true);
+        color("red")
+        cube([w_controller-2*width_frame_window, h_back-2*width_frame_window, thickness_top+1], center=true);
+    }
 }
 
-module kit_controller() {
+module debug_controller() {
+    difference(){
+        kit_controller();
+        translate([-w_controller/2, 0, h_walls/2])
+        color("green")
+        cube([w_controller, h_back+2*thickness_walls+1+gap_backlight, h_walls*2], center = true);
+    }
+}
+
+
+module kit_controller(){
     controller();
     translate([0, 0, h_walls/2])
-    walls(); 
+    walls();
+    color("green")
+    translate([0, 0, thickness_bottom])
+    frame_controller();
 }
-
-module walls() {
-    difference() {
-    cube([w_controller + 2*thickness_walls+gap_backligh, h_back + 2*thickness_walls+gap_backligh, thickness_bottom + h_walls], center=true);
-    color("red")
-    cube([w_controller+gap_backligh, h_back+gap_backligh, thickness_bottom + h_walls + 1], center=true);
-        translate([-w_controller-thicknees_walls+gap_backlight/2, 0, 0])
-        #cube([w_controller+gap_baclight, h_back+gap_backlight+3*thickneess_walls, thicknees_buttom+h_walls+1], center=true);
- }
+module walls(){
+    difference(){
+        cube([w_controller+2*thickness_walls+gap_backlight, h_back+2*thickness_walls+gap_backlight, thickness_bottom+h_walls], center=true);
+        color("red")
+        cube([w_controller+gap_backlight, h_back+gap_backlight, thickness_bottom+h_walls+1], center=true);
+        translate([-w_controller - thickness_walls+gap_backlight/2-0.24, 0, 0])
+        cube([w_controller+gap_backlight, h_back+gap_backlight+2*thickness_walls+1, thickness_bottom+h_walls+1], center=true);
+    }
 }
 
 module controller(){
-cube([w_controller+gap_backligh, h_back+gap_backligh, thickness_bottom], center=true);
+    cube([w_controller+gap_backlight, h_back+gap_backlight, thickness_bottom], center=true);
 }
