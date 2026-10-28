@@ -2,6 +2,7 @@ use <frame.scad>
 use <akkum_18650.scad>
 
 echo("Работа Сбитневой Дарьи!");
+
 h_back = 45;
 d_akkum = 18;
 h_akkum = 65;

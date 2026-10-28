@@ -1,0 +1,9 @@
+# Подсветка для рамки кадров рентгеноскопии 
+
+## Frame Backlight
+
+Model for 3D-printing of language OpenScad.
+Backlight powered from akkum 18650 LiIon.
+
+![Основная панель](screenshots/main_view.png)
+
