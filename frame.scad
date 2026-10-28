@@ -1,7 +1,7 @@
 use <akkum_18650.scad>
 use <controller.scad>
 
-echo("Работа Работа Сбитневой Дарьи!");
+echo("Работа Сбитневой Дарьи!");
 
 thickness_frame = 4;
 thickness_walls = 2;
@@ -23,13 +23,17 @@ h_akkum = 65;
 
 gap_backlight = 1.5;
 
-kit_frame();
-translate([w_back/2+w_controller/2+2*thickness_walls, 0, 0])
-kit_controller();
-//frame_debug();
+//kit_frame();
+//translate([w_back/2+w_controller/2+2*thickness_walls, 0, 0])
+//kit_controller();
+
+translate([1, 0, 0])
+debug_controller();
+frame_debug();
+
 //translate([0, 0, thickness_bottom/2+thickness_top/2])
 //window_frame();
-walls();
+//walls();
 
 module window_frame(){
     difference(){
@@ -84,3 +88,4 @@ module backlight(){
 module bottom(){
     cube([w_back+2*thickness_walls+gap_backlight, h_back+2*thickness_walls+gap_backlight, thickness_bottom], center = true);
 }
+
